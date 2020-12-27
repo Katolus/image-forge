@@ -26,7 +26,7 @@ func (r Result) Forge(storePath string) {
 
 	defer of.Close()
 
-	fileName := []string{storePath, "/", strings.Trim(n.name, ".jpg"), "_IN_", strings.Trim(h.name, ".jpg"), "_DIRECTORY_", strconv.Itoa(r.avgDiff), "_Y_X_", strconv.Itoa(r.hIdx / (h.width)), "_", strconv.Itoa(r.hIdx % (h.width)), ".jpg"}
+	fileName := []string{storePath, strings.Trim(n.name, ".jpg"), "_IN_", strings.Trim(h.name, ".jpg"), "_DIRECTORY_", strconv.Itoa(r.avgDiff), "_Y_X_", strconv.Itoa(r.hIdx / (h.width)), "_", strconv.Itoa(r.hIdx % (h.width)), ".jpg"}
 	nf, err := os.Create(strings.Join(fileName, ""))
 
 	if err != nil {
@@ -116,7 +116,7 @@ func (img Image) ForgeRev(revImgDir string) {
 	if err != nil {
 		log.Fatalf("Error decoding read image. Error -> %s", err)
 	}
-	fileName := revImgDir + "/rev" + img.name
+	fileName := revImgDir + "rev_" + img.name
 	nf, err := os.Create(fileName)
 
 	if err != nil {
@@ -162,7 +162,7 @@ func (img Image) ForgeLQ(lqImgDir string, paletteType string) {
 		RGBA = getP9RGBA
 	}
 
-	fileName := lqImgDir + paletteType + img.name
+	fileName := lqImgDir + "lq_" + paletteType + "_" + img.name
 	nf, err := os.Create(fileName)
 
 	if err != nil {
@@ -187,12 +187,13 @@ func (img Image) ForgeLQ(lqImgDir string, paletteType string) {
 
 // ForgeGrad - Produces an image of the gradient of diff change between pixels
 //
-// i.e. - endPath = "./results/gradImage.jpg"
-func (img Image) ForgeGrad(endPath string) {
+// i.e. - resultPath = "./results/gradImage.jpg"
+func (img Image) ForgeGrad(resultPath string) {
+	gradPath := resultPath + "grad_" + img.name
 
-	nf, err := os.Create(endPath)
+	nf, err := os.Create(gradPath)
 	if err != nil {
-		log.Fatalf("Error creating new file %s. Error -> %s", endPath, err)
+		log.Fatalf("Error creating new file %s. Error -> %s", gradPath, err)
 	}
 
 	defer nf.Close()
@@ -211,7 +212,7 @@ func (img Image) ForgeGrad(endPath string) {
 		}
 	}
 	jpeg.Encode(nf, m, nil)
-	fmt.Printf("A gradient image under %s has been created.\n", endPath)
+	fmt.Printf("A gradient image under %s has been created.\n", gradPath)
 }
 
 // Util function for retriving name of a file for a given directory

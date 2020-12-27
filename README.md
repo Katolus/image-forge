@@ -16,3 +16,7 @@ Main learning received from this project:
  * Testing and documentation from a user perspective
 
 Future of this library is still unknown. Go is a very enjoyable language to work in.
+
+## How to run
+
+In the root directory of the package run `go run run.go`. 
