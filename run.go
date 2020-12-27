@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"katolus/image-analysis/forge"
+	"katolus/image-forge/forge"
 )
 
 func main() {

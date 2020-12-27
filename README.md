@@ -1,5 +1,7 @@
 # Image play in Go
 
+## Prerequisites
+
 ## Big part of this repository was based on the knowledge I received from Todd McLeod and his `Code Clinic: Go` course.
 
 This package was created in order to learn Go programming language. It is not production quality.  
