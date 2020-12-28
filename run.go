@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	picturePath := "./images/wedding_photo_2.jpg"
+	picturePath := "./images/wedding_photo_4.jpeg"
 	img := forge.GetPixels(picturePath)
 
 	// Creates a reversed picture.
